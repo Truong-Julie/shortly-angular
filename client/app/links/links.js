@@ -5,6 +5,6 @@ angular.module('shortly.links', [])
   Links.getAll()
     .then(function(links) {
       console.log('invokes: ', links);
-      $scope.urls = links;
+      $scope.data.links = links;
     });
 });
