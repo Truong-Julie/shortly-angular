@@ -1,7 +1,17 @@
-<div id='container'>
+<div id='container' ng-init="url = []">
 <!-- Your code here -->
-  <input ng-model="url"/>
-  <button ng-click="addLink(url)">
+  <div ng-controller="ShortenController">
+    <input ng-model="url"/>
+    <button ng-click="link.url = url; addLink()"><a>Add link</a></button>
+    <button><a href="#/links">See links</a></button>
+
+  <hr>
+    <pre>
+      {{ link }}
+      {{ url }}
+    </pre>
+  </hr>
+  </div>
 </div>
 
 

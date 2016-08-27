@@ -1,6 +1,22 @@
 <div id='container'>
   <!-- Your html here -->
-  <div ng-controller="LinksController" onload="getAll()" ng-model="urls">
-    <div ng-repeat="url in urls">{{ url }}</div>
+  <div ng-controller="LinksController" onload="getAll()" ng-model="data.links">
+  <button><a href="#/shorten">Add link</a></button>
+    <div ng-repeat="url in data.links" class="link">
+      <img src='../../assets/redirect_icon.png'>
+      <div class='title'>{{ url.title }}</div>
+      <div class='original'>{{ url.url }}</div>
+      <div class='visits'><span class='count'>{{ url.visits }}</span>Visits</div>
+      <a href='{{ url.baseUrl}}/{{url.code }}'>{{ url.baseUrl}}/{{url.code }}</a>
+    </div>
   </div>
+  <hr>
+    <pre>
+      {{ data.links }}
+    </pre>
+  </hr>
 </div>
+
+<!-- 
+ [{"_id":"57c0e4c3fec02ae5121d23bb","code":"595c3","url":"https://www.google.com/","visits":0,"baseUrl":"http://localhost:3000","title":"https://www.google.com/","__v":0}]
+-->
