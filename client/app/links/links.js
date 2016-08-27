@@ -1,6 +1,6 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, Links) {
+.controller('LinksController', function ($scope, Links, Auth) {
   $scope.data = {};
   var sortUrls = function(urlArray) {
     urlArray.sort(function(a, b) {
@@ -13,4 +13,8 @@ angular.module('shortly.links', [])
       console.log('invokes: ', links);
       $scope.data.links = sortUrls(links);
     });
+  $scope.signout = function() {
+    Auth.signout();
+  };
+
 });

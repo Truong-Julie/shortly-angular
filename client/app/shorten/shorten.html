@@ -5,6 +5,7 @@
     <input ng-model="url" name="url" type="url"/>
     <button ng-click="link.url = url; addLink()" ng-disabled="form.url.$invalid"><a>Add link</a></button>
     <button><a href="#/links">See links</a></button>
+    <p class="error" ng-show="form.url.$invalid">Check your url!</p>
 
   <hr>
     <pre>
@@ -12,6 +13,7 @@
     </pre>
   </hr>
   </div>
+  <button ng-click="signout()">Signout</button>
 </div>
 </form>
 <!--

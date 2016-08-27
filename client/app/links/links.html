@@ -2,6 +2,7 @@
   <!-- Your html here -->
   <div ng-controller="LinksController" onload="getAll()" ng-model="data.links">
   <button><a href="#/shorten">Add link</a></button>
+  <button ng-click="signout()" class="btn btn-primary">Signout</button>
     <div ng-repeat="url in data.links" class="link">
       <img src='../../assets/redirect_icon.png'>
       <div class='title'>{{ url.title }}</div>
@@ -9,6 +10,7 @@
       <div class='visits'><span class='count'>{{ url.visits }}</span>Visits</div>
       <a href='{{ url.baseUrl}}/{{url.code }}'>{{ url.baseUrl}}/{{url.code }}</a>
     </div>
+
   </div>
   <hr>
     <pre>
