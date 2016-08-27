@@ -23,6 +23,14 @@ describe('LinksController', function () {
       });
     };
 
+    // shortenController = function () {
+    //   return $controller('ShortenController', {
+    //     $scope: $scope,
+    //     Links: Links,
+    //     $location: $location
+    //   });
+    // };
+
   }));
 
   it('should have a data property on the $scope', function () {
@@ -47,7 +55,16 @@ describe('LinksController', function () {
 
     createController();
     $httpBackend.flush();
-
+    
     expect($scope.data.links).to.deep.equal(mockLinks);
   });
+
+  // it('will update the count of links when links are added', function() {
+  //   $httpBackend.expectPOST('/api/links', {url: 'myurl'});
+  //   $httpBackend.expectPOST('/api/links', {url: 'myurl'});
+  //   createController();
+  //   //$httpBackend.flush();
+  //   console.log($scope.data);
+  //   expect($scope.data.links.length).to.equal(2);
+  // });
 });

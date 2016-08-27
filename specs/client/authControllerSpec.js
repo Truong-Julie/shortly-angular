@@ -65,3 +65,60 @@ describe('AuthController', function () {
     expect($window.localStorage.getItem('com.shortly')).to.equal(token);
   });
 });
+
+describe('Signout Token Removal', function() {
+  var $scope, $rootScope, $location, $window, $httpBackend, createController, Auth;
+
+  // using angular mocks, we can inject the injector
+  // to retrieve our dependencies
+  beforeEach(module('shortly'));
+  beforeEach(inject(function ($injector) {
+
+  // mock out our dependencies
+    $rootScope = $injector.get('$rootScope');
+    $location = $injector.get('$location');
+    $window = $injector.get('$window');
+    $httpBackend = $injector.get('$httpBackend');
+    Auth = $injector.get('Auth');
+    $scope = $rootScope.$new();
+
+    var $controller = $injector.get('$controller');
+    $window.localStorage.removeItem('com.shortly');
+    // used to create our AuthController for testing
+    createController = function () {
+      return $controller('AuthController', {
+        $scope: $scope,
+        $window: $window,
+        $location: $location,
+        Auth: Auth
+      });
+    };
+    createController();
+  }));
+
+  afterEach(function () {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+  });
+
+  it('should not store a token after signout', function() {
+    expect($window.localStorage.getItem('com.shortly')).to.equal(null);
+  });
+
+  it('should redirect non-signed-in user to signin', function() {
+    // var token = 'sjj232hwjhr3urw90rof';
+    // $httpBackend.expectPOST('/api/users/signup').respond({token: token});
+    // $httpBackend.flush();
+    $location.path('/links');
+    Auth.signout();
+    expect($location.path()).to.equal('/signin');
+  });
+
+  it('should redirect non-signed-in user\'s requests to signin', function() {
+
+  });
+});
+
+// Token - checking if the token is removed after sign out
+
+// Routing - after sign out, the user is routed to signin

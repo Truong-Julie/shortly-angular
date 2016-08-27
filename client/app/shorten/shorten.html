@@ -1,17 +1,20 @@
 <div id='container' ng-init="url = []">
 <!-- Your code here -->
+<form name="form" action="">
   <div ng-controller="ShortenController">
-    <input ng-model="url"/>
-    <button ng-click="link.url = url; addLink()"><a>Add link</a></button>
+    <input ng-model="url" name="url" type="url"/>
+    <button ng-click="link.url = url; addLink()" ng-disabled="form.url.$invalid"><a>Add link</a></button>
     <button><a href="#/links">See links</a></button>
 
   <hr>
     <pre>
-      {{ link }}
-      {{ url }}
+      {{ form.url.$valid }}
     </pre>
   </hr>
   </div>
 </div>
-
-
+</form>
+<!--
+ngPattern="regex" 
+name="urls" ng-pattern="regex" required="true"
+ -->
